@@ -3,10 +3,12 @@
     package="team.idp.blabla">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <uses-feature android:name="android.hardware.usb.accessory" android:required="false"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
+    <uses-feature
+        android:name="android.hardware.usb.accessory"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -30,7 +32,10 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".MiniDroneActivity"
+        <activity
+            android:name=".MiniDroneActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".RadiusActivity"
             android:screenOrientation="landscape"></activity>
     </application>
 

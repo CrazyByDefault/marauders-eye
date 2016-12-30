@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                     case ARDISCOVERY_PRODUCT_MINIDRONE_EVO_BRICK:
                     case ARDISCOVERY_PRODUCT_MINIDRONE_EVO_LIGHT:
                     case ARDISCOVERY_PRODUCT_MINIDRONE_DELOS3:
-                        intent = new Intent(MainActivity.this, MiniDroneActivity.class);
+                        intent = new Intent(MainActivity.this, RadiusActivity.class);
                         break;
                     case ARDISCOVERY_PRODUCT_MINIDRONE_WINGX:
 
