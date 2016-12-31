@@ -21,10 +21,13 @@ public class RadiusActivity extends AppCompatActivity {
 
     private Button takeOff;
     private Button moveShakalaka;
-    private EditText radius;
+    private float radius;
     private MiniDrone mMiniDrone;
     private TextView mBatteryLabel;
     private TextView status;
+
+    private static double ultraImpNumThingy = 0.17431148549;
+
 
     private ProgressDialog mConnectionProgressDialog;
     private ProgressDialog mDownloadProgressDialog;
@@ -52,6 +55,7 @@ public class RadiusActivity extends AppCompatActivity {
         public void run() {
             mMiniDrone.setPitch((byte) 0);
             mMiniDrone.setFlag((byte) 0);
+            mMiniDrone.setYaw((byte) 0);
             status.setText("Stopping motion");
         }
     };
@@ -61,6 +65,13 @@ public class RadiusActivity extends AppCompatActivity {
         public void run() {
             mMiniDrone.takePicture();
             status.setText("Taking picture");
+        }
+    };
+
+    private Runnable yawAntiClock = new Runnable() {
+        @Override
+        public void run() {
+            mMiniDrone.setYaw((byte) -50);
         }
     };
 
@@ -76,13 +87,13 @@ public class RadiusActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         ARDiscoveryDeviceService service = intent.getParcelableExtra(MainActivity.EXTRA_DEVICE_SERVICE);
+        radius = Float.parseFloat(intent.getStringExtra(MainActivity.RADIUS));
         mMiniDrone = new MiniDrone(this, service);
         mMiniDrone.addListener(mMiniDroneListener);
 
 
-
-
     }
+
 
     @Override
     protected void onStart() {
@@ -155,6 +166,15 @@ public class RadiusActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Handler maHandler = new Handler();
+
+                for(int t = 0; t<36 ; t++){
+                    maHandler.post(takePicture);
+                    maHandler.postDelayed(yawAntiClock, 3000);
+                    maHandler.postDelayed(stopMoving, 3000 + 111);
+
+                }
+
+
 
                 maHandler.postDelayed(moveFront, 2000);
                 maHandler.postDelayed(stopMoving, 4000);

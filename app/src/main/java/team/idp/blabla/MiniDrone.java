@@ -230,6 +230,7 @@ public class MiniDrone {
     public void setPitch(byte pitch) {
         if ((mDeviceController != null) && (mState.equals(ARCONTROLLER_DEVICE_STATE_ENUM.ARCONTROLLER_DEVICE_STATE_RUNNING))) {
             mDeviceController.getFeatureMiniDrone().setPilotingPCMDPitch(pitch);
+
         }
     }
 
