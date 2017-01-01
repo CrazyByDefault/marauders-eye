@@ -29,7 +29,10 @@ public class RadiusActivity extends AppCompatActivity {
     private EditText timeEditText;
     private float acceleration = (float) 0.5858;
     private TextView status;
-
+    private Button takePicButton;
+    private EditText yawInputEt;
+    private int yawInput;
+    private int counter = 0;
     private static double ultraImpNumThingy = 0.17431148549;
 
 
@@ -54,12 +57,44 @@ public class RadiusActivity extends AppCompatActivity {
         }
     };
 
+    private Runnable rollRight = new Runnable() {
+        @Override
+        public void run() {
+            mMiniDrone.setRoll((byte) 50);
+            mMiniDrone.setFlag((byte) 1);
+        }
+    };
+
+    private Runnable rollLeft = new Runnable() {
+        @Override
+        public void run() {
+            mMiniDrone.setRoll((byte) -50);
+            mMiniDrone.setFlag((byte) 1);
+        }
+    };
+
+    private Runnable yawLeft = new Runnable() {
+        @Override
+        public void run() {
+            mMiniDrone.setYaw((byte) 50);
+        }
+    };
+
+    private Runnable yawRight = new Runnable() {
+        @Override
+        public void run() {
+            mMiniDrone.setYaw((byte) yawInput);
+        }
+    };
+
     private Runnable stopMoving = new Runnable() {
         @Override
         public void run() {
             mMiniDrone.setPitch((byte) 0);
             mMiniDrone.setFlag((byte) 0);
+            mMiniDrone.setRoll((byte) 0);
             mMiniDrone.setYaw((byte) 0);
+            mMiniDrone.setGaz((byte) 0);
             status.setText("Stopping motion");
         }
     };
@@ -72,12 +107,20 @@ public class RadiusActivity extends AppCompatActivity {
         }
     };
 
-    private Runnable yawAntiClock = new Runnable() {
+    private Runnable altHigh = new Runnable() {
         @Override
         public void run() {
-            mMiniDrone.setYaw((byte) -50);
+            mMiniDrone.setGaz((byte) 50);
         }
     };
+
+    private Runnable altLow = new Runnable() {
+        @Override
+        public void run() {
+            mMiniDrone.setGaz((byte) -50);
+        }
+    };
+
 
 
 
@@ -156,6 +199,8 @@ public class RadiusActivity extends AppCompatActivity {
 
         status = (TextView) findViewById(R.id.statusText);
         timeEditText = (EditText) findViewById(R.id.timeInput);
+        yawInputEt = (EditText) findViewById(R.id.yawInput);
+        takePicButton =  (Button) findViewById(R.id.takePicBt);
 
         takeOff = (Button) findViewById(R.id.takeOffButton);
         takeOff.setOnClickListener(new View.OnClickListener() {
@@ -174,19 +219,28 @@ public class RadiusActivity extends AppCompatActivity {
         });
 
         moveShakalaka = (Button) findViewById(R.id.moveButton);
+        final Handler maHandler = new Handler();
 
         moveShakalaka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                time = Float.parseFloat(timeEditText.getText().toString());
-                Handler maHandler = new Handler();
-//
-//                maHandler.post(moveFront);
-//                maHandler.postDelayed(stopMoving, (int) time*1000);
 
-                maHandler.post(takePicture);
+                time = Float.parseFloat(timeEditText.getText().toString());
+                yawInput = Integer.parseInt(yawInputEt.getText().toString());
 
+                maHandler.post(yawRight);
+                maHandler.post(rollLeft);
+                maHandler.postDelayed(stopMoving, (int) time*1000);
+//                counter = counter + ((int) time*1000);
 
+            }
+        });
+
+        takePicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                maHandler.post(stopMoving);
+                maHandler.postDelayed(takePicture, 750);
 
             }
         });
