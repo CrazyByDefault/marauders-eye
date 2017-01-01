@@ -26,6 +26,7 @@ public class RadiusActivity extends AppCompatActivity {
     private MiniDrone mMiniDrone;
     private TextView mBatteryLabel;
     private float time;
+    private EditText timeEditText;
     private float acceleration = (float) 0.5858;
     private TextView status;
 
@@ -93,8 +94,8 @@ public class RadiusActivity extends AppCompatActivity {
         Bundle intentArgs = intent.getExtras();
         ARDiscoveryDeviceService service = intent.getParcelableExtra(MainActivity.EXTRA_DEVICE_SERVICE);
         radius = intentArgs.getFloat(MainActivity.RADIUS);
-        double timeSquaredDouble = (double) (2*radius)/acceleration;
-        time = (float) Math.sqrt(timeSquaredDouble);
+//        double timeSquaredDouble = (double) (2*radius)/acceleration;
+        time = radius;
         status.setText(Float.toString(radius) + ", " + Float.toString(time));
 
 
@@ -154,6 +155,7 @@ public class RadiusActivity extends AppCompatActivity {
     private void initIHM(){
 
         status = (TextView) findViewById(R.id.statusText);
+        timeEditText = (EditText) findViewById(R.id.timeInput);
 
         takeOff = (Button) findViewById(R.id.takeOffButton);
         takeOff.setOnClickListener(new View.OnClickListener() {
@@ -176,11 +178,13 @@ public class RadiusActivity extends AppCompatActivity {
         moveShakalaka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                time = Float.parseFloat(timeEditText.getText().toString());
                 Handler maHandler = new Handler();
+//
+//                maHandler.post(moveFront);
+//                maHandler.postDelayed(stopMoving, (int) time*1000);
 
-                maHandler.post(moveFront);
-                maHandler.postDelayed(stopMoving, (int) time*1000);
-
+                maHandler.post(takePicture);
 
 
 

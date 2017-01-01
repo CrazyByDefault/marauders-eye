@@ -42,11 +42,22 @@
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/moveButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="37dp"
         android:id="@+id/statusText"
-        android:textSize="24dp" />
+        android:textSize="24dp"
+        android:layout_below="@+id/batteryBla"
+        android:layout_alignStart="@+id/moveButton"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="31dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/timeInput"
+        android:hint="Time"
+        android:layout_alignTop="@+id/statusText"
+        android:layout_toEndOf="@+id/batteryBla"
+        android:inputType="number" />
 
 
 </RelativeLayout>
