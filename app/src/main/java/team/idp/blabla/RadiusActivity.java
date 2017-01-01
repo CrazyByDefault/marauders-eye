@@ -3,7 +3,7 @@ package team.idp.blabla;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Handler;
-import android.support.annotation.FloatRange;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,19 +15,18 @@ import com.parrot.arsdk.arcommands.ARCOMMANDS_MINIDRONE_MEDIARECORDEVENT_PICTURE
 import com.parrot.arsdk.arcommands.ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_ENUM;
 import com.parrot.arsdk.arcontroller.ARCONTROLLER_DEVICE_STATE_ENUM;
 import com.parrot.arsdk.ardiscovery.ARDiscoveryDeviceService;
-import team.idp.blabla.MiniDrone;
+
 
 
 public class RadiusActivity extends AppCompatActivity {
 
     private Button takeOff;
     private Button moveShakalaka;
-    private float radius;
+//    private float radius;
     private MiniDrone mMiniDrone;
     private TextView mBatteryLabel;
     private float time;
     private EditText timeEditText;
-    private float acceleration = (float) 0.5858;
     private TextView status;
     private Button takePicButton;
     private EditText yawInputEt;
@@ -136,10 +135,10 @@ public class RadiusActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle intentArgs = intent.getExtras();
         ARDiscoveryDeviceService service = intent.getParcelableExtra(MainActivity.EXTRA_DEVICE_SERVICE);
-        radius = intentArgs.getFloat(MainActivity.RADIUS);
+        //radius = intentArgs.getFloat(MainActivity.RADIUS);
 //        double timeSquaredDouble = (double) (2*radius)/acceleration;
-        time = radius;
-        status.setText(Float.toString(radius) + ", " + Float.toString(time));
+        //time = radius;
+        status.setText(Float.toString(time));
 
 
 

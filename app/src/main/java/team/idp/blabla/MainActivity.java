@@ -33,10 +33,10 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_DEVICE_SERVICE = "EXTRA_DEVICE_SERVICE";
-    public static final String RADIUS = "RADIUS";
+
 
     private static final String TAG = "DeviceListActivity";
-    private EditText radius;
+
     /** List of runtime permission we need. */
     private static final String[] PERMISSIONS_NEEDED = new String[]{
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final ListView listView = (ListView) findViewById(R.id.list);
-        radius = (EditText) findViewById(R.id.radiusInput);
+
 
         // Assign adapter to ListView
         listView.setAdapter(mAdapter);
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (intent != null) {
                     Bundle args = new Bundle();
-                    args.putFloat(RADIUS, Float.parseFloat(radius.getText().toString()));
+                    //args.putFloat(RADIUS, Float.parseFloat(radius.getText().toString()));
                     args.putParcelable(EXTRA_DEVICE_SERVICE, service);
                     intent.putExtras(args);
 

@@ -39,7 +39,7 @@
         android:textStyle="normal|bold" />
 
     <TextView
-        android:text="TextView"
+        android:text="Status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/statusText"
