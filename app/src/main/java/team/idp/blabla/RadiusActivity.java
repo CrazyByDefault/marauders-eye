@@ -3,6 +3,7 @@ package team.idp.blabla;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Handler;
+import android.support.annotation.FloatRange;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,8 @@ public class RadiusActivity extends AppCompatActivity {
     private float radius;
     private MiniDrone mMiniDrone;
     private TextView mBatteryLabel;
+    private float time;
+    private float speed = (float) 0.3974;
     private TextView status;
 
     private static double ultraImpNumThingy = 0.17431148549;
@@ -85,9 +88,16 @@ public class RadiusActivity extends AppCompatActivity {
 
         initIHM();
 
+
         Intent intent = getIntent();
+        Bundle intentArgs = intent.getExtras();
         ARDiscoveryDeviceService service = intent.getParcelableExtra(MainActivity.EXTRA_DEVICE_SERVICE);
-        radius = Float.parseFloat(intent.getStringExtra(MainActivity.RADIUS));
+        radius = intentArgs.getFloat(MainActivity.RADIUS);
+        time = radius/speed;
+        status.setText(Float.toString(radius) + ", " + Float.toString(time));
+
+
+
         mMiniDrone = new MiniDrone(this, service);
         mMiniDrone.addListener(mMiniDroneListener);
 
@@ -167,20 +177,12 @@ public class RadiusActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Handler maHandler = new Handler();
 
-                for(int t = 0; t<36 ; t++){
-                    maHandler.post(takePicture);
-                    maHandler.postDelayed(yawAntiClock, 3000);
-                    maHandler.postDelayed(stopMoving, 3000 + 111);
-
-                }
+                maHandler.post(moveFront);
+                maHandler.postDelayed(stopMoving, (int) time*1000);
 
 
 
-                maHandler.postDelayed(moveFront, 2000);
-                maHandler.postDelayed(stopMoving, 4000);
-                maHandler.postDelayed(takePicture, 6000);
-                maHandler.postDelayed(moveBack, 15000);
-                maHandler.postDelayed(stopMoving, 17000);
+
             }
         });
 

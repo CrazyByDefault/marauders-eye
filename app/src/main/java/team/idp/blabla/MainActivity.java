@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.e(TAG, "The type " + product + " is not supported by this sample");
                 }
 
-                if (intent != null && !radius.getText().toString().equals("")) {
+                if (intent != null) {
                     Bundle args = new Bundle();
                     args.putFloat(RADIUS, Float.parseFloat(radius.getText().toString()));
                     args.putParcelable(EXTRA_DEVICE_SERVICE, service);
