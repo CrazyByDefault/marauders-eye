@@ -26,7 +26,7 @@ public class RadiusActivity extends AppCompatActivity {
     private MiniDrone mMiniDrone;
     private TextView mBatteryLabel;
     private float time;
-    private float speed = (float) 0.3974;
+    private float acceleration = (float) 0.32;
     private TextView status;
 
     private static double ultraImpNumThingy = 0.17431148549;
@@ -93,7 +93,8 @@ public class RadiusActivity extends AppCompatActivity {
         Bundle intentArgs = intent.getExtras();
         ARDiscoveryDeviceService service = intent.getParcelableExtra(MainActivity.EXTRA_DEVICE_SERVICE);
         radius = intentArgs.getFloat(MainActivity.RADIUS);
-        time = radius/speed;
+        double timeSquaredDouble = (double) (2*radius)/acceleration;
+        time = (float) Math.sqrt(timeSquaredDouble);
         status.setText(Float.toString(radius) + ", " + Float.toString(time));
 
 
