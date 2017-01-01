@@ -26,7 +26,7 @@ public class RadiusActivity extends AppCompatActivity {
     private MiniDrone mMiniDrone;
     private TextView mBatteryLabel;
     private float time;
-    private float acceleration = (float) 0.32;
+    private float acceleration = (float) 0.5858;
     private TextView status;
 
     private static double ultraImpNumThingy = 0.17431148549;
