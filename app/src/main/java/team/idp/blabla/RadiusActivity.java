@@ -30,6 +30,7 @@ public class RadiusActivity extends AppCompatActivity {
     private Button takePicButton;
     private int yawInput;
     private int counter = 0;
+    private int rollInput;
     private Button settingsBt;
     private int waitTime;
     private static double ultraImpNumThingy = 0.17431148549;
@@ -67,7 +68,7 @@ public class RadiusActivity extends AppCompatActivity {
     private Runnable rollLeft = new Runnable() {
         @Override
         public void run() {
-            mMiniDrone.setRoll((byte) -50);
+            mMiniDrone.setRoll((byte) -rollInput);
             mMiniDrone.setFlag((byte) 1);
         }
     };
@@ -193,6 +194,7 @@ public class RadiusActivity extends AppCompatActivity {
         time = resultArgs.getFloat("TIME");
         waitTime = (int) resultArgs.getFloat("WAIT");
         yawInput = resultArgs.getInt("YAW");
+        rollInput = resultArgs.getInt("ROLL");
 
     }
 
