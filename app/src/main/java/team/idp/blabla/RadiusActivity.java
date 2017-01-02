@@ -28,6 +28,7 @@ public class RadiusActivity extends AppCompatActivity {
     private float time;
     private TextView status;
     private Button takePicButton;
+    private float picInterval;
     private int yawInput;
     private int counter = 0;
     private int rollInput;
@@ -194,6 +195,7 @@ public class RadiusActivity extends AppCompatActivity {
         time = resultArgs.getFloat("TIME");
         waitTime = (int) resultArgs.getFloat("WAIT");
         yawInput = resultArgs.getInt("YAW");
+        picInterval = resultArgs.getFloat("SHUTTER");
         rollInput = resultArgs.getInt("ROLL");
 
     }
@@ -245,8 +247,12 @@ public class RadiusActivity extends AppCompatActivity {
 
                 maHandler.postDelayed(stopMoving, (int) (time*waitTime)* 1000);
 
+
                 for(int i = 0; i < time; yawInput+=5) {
-                    maHandler.post(rollLeft);
+
+                    maHandler.postDelayed(stopMoving, i*waitTime*1000 + waitTime*500);
+                    maHandler.postDelayed(takePicture, i*waitTime*1000 + waitTime*500);
+                    maHandler.postDelayed(rollLeft, i*waitTime*1000);
                     maHandler.postDelayed(yawRight, i*waitTime*1000);
 
 

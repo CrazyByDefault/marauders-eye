@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:hint="Input initial Yaw"
         android:id="@+id/yawInput"
-
+        android:inputType="number"
         android:layout_marginStart="23dp"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/timeInput" />
@@ -32,6 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/waitTimeInput"
+        android:inputType="numberDecimal"
         android:hint="Wait time"
         android:layout_marginLeft="23dp"
         android:layout_toEndOf="@+id/yawInput"/>
@@ -47,12 +48,24 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:hint="Roll speed"
         android:ems="10"
         android:layout_alignBottom="@+id/waitTimeInput"
         android:layout_toEndOf="@+id/waitTimeInput"
         android:layout_marginStart="26dp"
         android:id="@+id/rollInput" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/shutterInput"
+        android:hint="Pic Interval"
+        android:layout_marginTop="49dp"
+        android:layout_below="@+id/timeInput"
+        android:layout_alignParentStart="true" />
+
 
 </RelativeLayout>
