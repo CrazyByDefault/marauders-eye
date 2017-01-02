@@ -56,26 +56,38 @@
         android:layout_toEndOf="@+id/takeOffButton" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:hint="Input Yaw"
+        android:layout_marginRight="32dp"
+        android:layout_alignTop="@+id/timeInput"
+        android:layout_toEndOf="@+id/timeInput"
+        android:id="@+id/yawInput" />
+
+    <EditText
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:id="@+id/timeInput"
         android:hint="Time"
         android:inputType="numberDecimal"
-        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="18dp"
+        android:layout_marginRight="36dp"
         android:layout_above="@+id/takeOffButton"
-        android:layout_alignEnd="@+id/takePicBt"
-        android:layout_marginBottom="17dp" />
+        android:layout_alignParentStart="true" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
+        android:hint="Input wait time"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
+        android:inputType="number"
         android:ems="10"
-        android:hint="Input Yaw"
-        android:layout_alignTop="@+id/timeInput"
-        android:layout_toEndOf="@+id/timeInput"
-        android:id="@+id/yawInput" />
+        android:id="@+id/waitTimeInput"
+        android:layout_alignBaseline="@+id/yawInput"
+        android:layout_alignBottom="@+id/yawInput"
+        android:layout_toEndOf="@+id/yawInput" />
 
 
 </RelativeLayout>
