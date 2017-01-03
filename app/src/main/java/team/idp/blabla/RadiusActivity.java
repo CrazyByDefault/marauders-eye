@@ -250,7 +250,7 @@ public class RadiusActivity extends AppCompatActivity {
                 maHandler.postDelayed(altLow, (int) time*waitTime*500);
 
 
-                for(int i = 0; i < time; yawInput+=5) {
+                for(int i = 0; i < time; yawInput+=2) {
 
 //                    maHandler.postDelayed(stopMoving, i*waitTime*1000 + waitTime*500);
 //                    maHandler.postDelayed(takePicture, i*waitTime*1000 + waitTime*500);
