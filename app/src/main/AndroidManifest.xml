@@ -16,6 +16,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,7 +36,10 @@
         <activity
             android:name=".MiniDroneActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".RadiusActivity"
+        <activity
+            android:name=".RadiusActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".YouOnlyLiveOnce"
             android:screenOrientation="landscape"></activity>
     </application>
 

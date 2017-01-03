@@ -26,13 +26,11 @@ public class RadiusActivity extends AppCompatActivity {
     private MiniDrone mMiniDrone;
     private TextView mBatteryLabel;
     private float time;
-    private EditText timeEditText;
     private TextView status;
     private Button takePicButton;
-    private EditText yawInputEt;
     private int yawInput;
     private int counter = 0;
-    private EditText waitTimeEt;
+    private Button settingsBt;
     private int waitTime;
     private static double ultraImpNumThingy = 0.17431148549;
 
@@ -190,6 +188,15 @@ public class RadiusActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onActivityResult(int x, int y, Intent resultIn) {
+        Bundle resultArgs = resultIn.getExtras();
+        time = resultArgs.getFloat("TIME");
+        waitTime = (int) resultArgs.getFloat("WAIT");
+        yawInput = resultArgs.getInt("YAW");
+
+    }
+
+    @Override
     public void onDestroy()
     {
         mMiniDrone.dispose();
@@ -199,10 +206,17 @@ public class RadiusActivity extends AppCompatActivity {
     private void initIHM(){
 
         status = (TextView) findViewById(R.id.statusText);
-        waitTimeEt = (EditText) findViewById(R.id.waitTimeInput);
-        timeEditText = (EditText) findViewById(R.id.timeInput);
-        yawInputEt = (EditText) findViewById(R.id.yawInput);
         takePicButton =  (Button) findViewById(R.id.takePicBt);
+        settingsBt = (Button) findViewById(R.id.settingsBt);
+
+        settingsBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RadiusActivity.this, YouOnlyLiveOnce.class);
+                startActivityForResult(intent, 0);
+
+            }
+        });
 
         takeOff = (Button) findViewById(R.id.takeOffButton);
         takeOff.setOnClickListener(new View.OnClickListener() {
@@ -226,11 +240,6 @@ public class RadiusActivity extends AppCompatActivity {
         moveShakalaka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                time = Float.parseFloat(timeEditText.getText().toString());
-                waitTime = Integer.parseInt(waitTimeEt.getText().toString());
-                yawInput = Integer.parseInt(yawInputEt.getText().toString());
-
 
                 maHandler.postDelayed(stopMoving, (int) (time*waitTime)* 1000);
 
