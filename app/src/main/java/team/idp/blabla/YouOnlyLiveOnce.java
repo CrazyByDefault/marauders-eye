@@ -10,9 +10,9 @@ import android.widget.EditText;
 public class YouOnlyLiveOnce extends AppCompatActivity {
 
     private Button doneBt;
-    private EditText rollSpeedInput, timeInput, yawInput, waitInput, picWaitInput;
+    private EditText rollSpeedInput, timeInput, yawInput, waitInput, picWaitInput, gazInput;
     private float time, wait, picInt;
-    private int yaw, roll;
+    private int yaw, roll, gaz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,7 @@ public class YouOnlyLiveOnce extends AppCompatActivity {
         timeInput = (EditText) findViewById(R.id.timeInput);
         yawInput = (EditText) findViewById(R.id.yawInput);
         rollSpeedInput = (EditText) findViewById(R.id.rollInput);
+        gazInput = (EditText) findViewById(R.id.gazInput);
         waitInput = (EditText) findViewById(R.id.waitTimeInput);
         picWaitInput = (EditText) findViewById(R.id.shutterInput);
         doneBt = (Button) findViewById(R.id.yoloDoneBt);
@@ -34,7 +35,7 @@ public class YouOnlyLiveOnce extends AppCompatActivity {
                 yaw = Integer.parseInt(yawInput.getText().toString());
                 picInt = Float.parseFloat(picWaitInput.getText().toString());
                 roll = Integer.parseInt(rollSpeedInput.getText().toString());
-
+                gaz = Integer.parseInt(gazInput.getText().toString());
 
                 Bundle args = new Bundle();
 
@@ -43,6 +44,8 @@ public class YouOnlyLiveOnce extends AppCompatActivity {
                 args.putInt("YAW", yaw);
                 args.putFloat("SHUTTER", picInt);
                 args.putInt("ROLL", roll);
+                args.putInt("GAZ", gaz);
+
                 Intent byebye = new Intent();
                 byebye.putExtras(args);
 

@@ -29,12 +29,11 @@ public class RadiusActivity extends AppCompatActivity {
     private TextView status;
     private Button takePicButton;
     private float picInterval;
-    private int yawInput;
+    private int yawInput, gazInput;
     private int counter = 0;
     private int rollInput;
     private Button settingsBt;
     private int waitTime;
-    private static double ultraImpNumThingy = 0.17431148549;
 
 
     private ProgressDialog mConnectionProgressDialog;
@@ -111,14 +110,14 @@ public class RadiusActivity extends AppCompatActivity {
     private Runnable altHigh = new Runnable() {
         @Override
         public void run() {
-            mMiniDrone.setGaz((byte) 50);
+            mMiniDrone.setGaz((byte) gazInput);
         }
     };
 
     private Runnable altLow = new Runnable() {
         @Override
         public void run() {
-            mMiniDrone.setGaz((byte) -50);
+            mMiniDrone.setGaz((byte) -gazInput);
         }
     };
 
@@ -255,7 +254,7 @@ public class RadiusActivity extends AppCompatActivity {
                     maHandler.postDelayed(rollLeft, i*waitTime*1000);
                     maHandler.postDelayed(yawRight, i*waitTime*1000);
 
-
+                    
                     i++;
                 }
 
