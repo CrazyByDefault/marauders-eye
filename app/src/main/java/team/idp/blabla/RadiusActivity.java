@@ -196,6 +196,7 @@ public class RadiusActivity extends AppCompatActivity {
         yawInput = resultArgs.getInt("YAW");
         picInterval = resultArgs.getFloat("SHUTTER");
         rollInput = resultArgs.getInt("ROLL");
+        gazInput = resultArgs.getInt("GAZ");
 
     }
 
