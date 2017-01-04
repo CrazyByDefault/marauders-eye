@@ -12,6 +12,9 @@ import android.widget.EditText;
 
 public class YouOnlyLiveOnce extends AppCompatActivity {
 
+    SharedPreferences settings;
+    SharedPreferences.Editor editor;
+
     private Button doneBt;
     private EditText rollSpeedInput, timeInput, yawInput, waitInput, yawInc, gazInput;
     private float time = 0, wait = 0, yawIncInt = 0;
@@ -22,6 +25,9 @@ public class YouOnlyLiveOnce extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_you_only_live_once);
 
+        settings = this.getPreferences(Context.MODE_PRIVATE);
+        editor = settings.edit();
+
         timeInput = (EditText) findViewById(R.id.timeInput);
         yawInput = (EditText) findViewById(R.id.yawInput);
         rollSpeedInput = (EditText) findViewById(R.id.rollInput);
@@ -30,21 +36,13 @@ public class YouOnlyLiveOnce extends AppCompatActivity {
         yawInc = (EditText) findViewById(R.id.yawStep);
         doneBt = (Button) findViewById(R.id.yoloDoneBt);
 
-        SharedPreferences settings = this.getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
 
-        editor.putFloat("Saved_time", time);
-        editor.putFloat("Saved_wait", wait);
-        editor.putInt("Saved_yaw", yaw);
-        editor.putFloat("Saved_yawInc", yawIncInt);
-        editor.putInt("Saved_roll", roll);
-        editor.putInt("Saved_gaz", gaz);
-        editor.apply();
 
-        yawInput.setText(Integer.toString(settings.getInt(getString(R.string.saved_time), 0)));
+        yawInput.setText(Integer.toString(settings.getInt("Saved_yaw", 0)));
         timeInput.setText(Float.toString(settings.getFloat("Saved_time", 0)));
         rollSpeedInput.setText(Float.toString(settings.getFloat("Saved_wait", 0)));
-        waitInput.setText(Float.toString(settings.getFloat("Saved_yawInc", 0)));
+        yawInc.setText(Float.toString(settings.getFloat("Saved_yawInc", 0)));
+        waitInput.setText(Float.toString(settings.getFloat("Saved_waitInput", 0)));
         rollSpeedInput.setText(Integer.toString(settings.getInt("Saved_roll", 0)));
         gazInput.setText(Integer.toString(settings.getInt("Saved_gaz", 0)));
 
@@ -72,10 +70,27 @@ public class YouOnlyLiveOnce extends AppCompatActivity {
 
                 setResult(0, byebye);
                 finish();
+
             }
         });
 
     }
 
+   
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        editor.putFloat("Saved_time", time);
+        editor.putFloat("Saved_wait", wait);
+        editor.putFloat("Saved_yawInc", yawIncInt);
+        editor.putInt("Saved_yaw", yaw);
+        editor.putFloat("Saved_waitInput", yawIncInt);
+        editor.putInt("Saved_roll", roll);
+        editor.putInt("Saved_gaz", gaz);
+        editor.commit();
+        finish();
+
+    }
 }
