@@ -3,6 +3,7 @@ package team.idp.blabla;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,20 +32,21 @@ public class YouOnlyLiveOnce extends AppCompatActivity {
 
         SharedPreferences settings = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putFloat("Saved_time" ,time);
-        editor.putFloat("Saved_wait" ,wait);
-        editor.putInt("Saved_yaw" ,yaw);
+
+        editor.putFloat("Saved_time", time);
+        editor.putFloat("Saved_wait", wait);
+        editor.putInt("Saved_yaw", yaw);
         editor.putFloat("Saved_yawInc", yawIncInt);
         editor.putInt("Saved_roll", roll);
         editor.putInt("Saved_gaz", gaz);
-        editor.commit();
+        editor.apply();
 
-        yawInput.setText(settings.getInt("Saved_yaw", 0));
+        yawInput.setText(Integer.toString(settings.getInt(getString(R.string.saved_time), 0)));
         timeInput.setText(Float.toString(settings.getFloat("Saved_time", 0)));
         rollSpeedInput.setText(Float.toString(settings.getFloat("Saved_wait", 0)));
         waitInput.setText(Float.toString(settings.getFloat("Saved_yawInc", 0)));
-        rollSpeedInput.setText(settings.getInt("Saved_roll", 0));
-        gazInput.setText(settings.getInt("Saved_gaz", 0));
+        rollSpeedInput.setText(Integer.toString(settings.getInt("Saved_roll", 0)));
+        gazInput.setText(Integer.toString(settings.getInt("Saved_gaz", 0)));
 
         doneBt.setOnClickListener(new View.OnClickListener() {
             @Override
