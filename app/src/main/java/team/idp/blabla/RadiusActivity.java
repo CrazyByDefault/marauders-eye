@@ -246,6 +246,8 @@ public class RadiusActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 maHandler.postDelayed(stopMoving, (int) (time*waitTime)* 1000);
+                maHandler.post(altHigh);
+                maHandler.postDelayed(altLow, (int) time*waitTime*500);
 
 
                 for(int i = 0; i < time; yawInput+=5) {
@@ -254,8 +256,6 @@ public class RadiusActivity extends AppCompatActivity {
                     maHandler.postDelayed(takePicture, i*waitTime*1000 + waitTime*500);
                     maHandler.postDelayed(rollLeft, i*waitTime*1000);
                     maHandler.postDelayed(yawRight, i*waitTime*1000);
-
-                    
                     i++;
                 }
 
