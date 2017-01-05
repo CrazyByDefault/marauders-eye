@@ -10,8 +10,8 @@ import android.widget.EditText;
 public class YouOnlyLiveOnce extends AppCompatActivity {
 
     private Button doneBt;
-    private EditText rollSpeedInput, timeInput, yawInput, waitInput, picWaitInput, gazInput;
-    private float time, wait, picInt;
+    private EditText rollSpeedInput, timeInput, yawInput, waitInput, yawInc, gazInput;
+    private float time, wait, yawIncInt;
     private int yaw, roll, gaz;
 
     @Override
@@ -24,7 +24,7 @@ public class YouOnlyLiveOnce extends AppCompatActivity {
         rollSpeedInput = (EditText) findViewById(R.id.rollInput);
         gazInput = (EditText) findViewById(R.id.gazInput);
         waitInput = (EditText) findViewById(R.id.waitTimeInput);
-        picWaitInput = (EditText) findViewById(R.id.shutterInput);
+        yawInc = (EditText) findViewById(R.id.yawStep);
         doneBt = (Button) findViewById(R.id.yoloDoneBt);
 
         doneBt.setOnClickListener(new View.OnClickListener() {
@@ -33,7 +33,7 @@ public class YouOnlyLiveOnce extends AppCompatActivity {
                 time = Float.parseFloat(timeInput.getText().toString());
                 wait = Float.parseFloat(waitInput.getText().toString());
                 yaw = Integer.parseInt(yawInput.getText().toString());
-                picInt = Float.parseFloat(picWaitInput.getText().toString());
+                yawIncInt = Float.parseFloat(yawInc.getText().toString());
                 roll = Integer.parseInt(rollSpeedInput.getText().toString());
                 gaz = Integer.parseInt(gazInput.getText().toString());
 
@@ -42,7 +42,7 @@ public class YouOnlyLiveOnce extends AppCompatActivity {
                 args.putFloat("TIME", time);
                 args.putFloat("WAIT", wait);
                 args.putInt("YAW", yaw);
-                args.putFloat("SHUTTER", picInt);
+                args.putFloat("YAWINCR", yawIncInt);
                 args.putInt("ROLL", roll);
                 args.putInt("GAZ", gaz);
 

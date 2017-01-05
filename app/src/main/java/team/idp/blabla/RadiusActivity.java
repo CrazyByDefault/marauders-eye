@@ -22,13 +22,13 @@ public class RadiusActivity extends AppCompatActivity {
 
     private Button takeOff;
     private Button moveShakalaka;
-//    private float radius;
+//    private float radius/;
     private MiniDrone mMiniDrone;
     private TextView mBatteryLabel;
     private float time;
     private TextView status;
     private Button takePicButton;
-    private float picInterval;
+    private float yawIncInt;
     private int yawInput, gazInput;
     private int counter = 0;
     private int rollInput;
@@ -194,7 +194,7 @@ public class RadiusActivity extends AppCompatActivity {
         time = resultArgs.getFloat("TIME");
         waitTime = (int) resultArgs.getFloat("WAIT");
         yawInput = resultArgs.getInt("YAW");
-        picInterval = resultArgs.getFloat("SHUTTER");
+        yawIncInt = resultArgs.getFloat("YAWINCRE");
         rollInput = resultArgs.getInt("ROLL");
         gazInput = resultArgs.getInt("GAZ");
 
@@ -250,11 +250,11 @@ public class RadiusActivity extends AppCompatActivity {
                 maHandler.postDelayed(altLow, (int) time*waitTime*500);
 
 
-                for(int i = 0; i < time; yawInput+=2) {
+                for(int i = 0; i < time; yawInput+=yawIncInt) {
 
 //                    maHandler.postDelayed(stopMoving, i*waitTime*1000 + waitTime*500);
 //                    maHandler.postDelayed(takePicture, i*waitTime*1000 + waitTime*500);
-                    
+                        
                     maHandler.postDelayed(rollLeft, i*waitTime*1000);
                     maHandler.postDelayed(yawRight, i*waitTime*1000);
                     i++;
