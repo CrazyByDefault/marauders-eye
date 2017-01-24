@@ -1,5 +1,6 @@
 package team.idp.blabla;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,7 +17,7 @@ public class YouOnlyLiveOnce extends AppCompatActivity {
     SharedPreferences.Editor editor;
 
     private Button doneBt;
-    private EditText rollSpeedInput, timeInput, yawInput, waitInput, yawInc, gazInput;
+    private EditText rollSpeedInput, timeInput, yawInput, waitInput, yawInc, gazInput;  //Variables
     private float time = 0, wait = 0, yawIncInt = 0;
     private int yaw = 0, roll = 0, gaz = 0;
 
@@ -36,8 +37,6 @@ public class YouOnlyLiveOnce extends AppCompatActivity {
         yawInc = (EditText) findViewById(R.id.yawStep);
         doneBt = (Button) findViewById(R.id.yoloDoneBt);
 
-
-
         yawInput.setText(Integer.toString(settings.getInt("Saved_yaw", 0)));
         timeInput.setText(Float.toString(settings.getFloat("Saved_time", 0)));
         rollSpeedInput.setText(Float.toString(settings.getFloat("Saved_wait", 0)));
@@ -52,7 +51,7 @@ public class YouOnlyLiveOnce extends AppCompatActivity {
                 time = Float.parseFloat(timeInput.getText().toString());
                 wait = Float.parseFloat(waitInput.getText().toString());
                 yaw = Integer.parseInt(yawInput.getText().toString());
-                yawIncInt = Float.parseFloat(yawInc.getText().toString());
+                yawIncInt = Float.parseFloat(yawInc.getText().toString());  // Get variables string --> numbers
                 roll = Integer.parseInt(rollSpeedInput.getText().toString());
                 gaz = Integer.parseInt(gazInput.getText().toString());
 

@@ -239,18 +239,18 @@ public class RadiusActivity extends AppCompatActivity {
         });
 
         moveShakalaka = (Button) findViewById(R.id.moveButton);
-        final Handler maHandler = new Handler();
+        final Handler maHandler = new Handler();             //The Handler
 
         moveShakalaka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                maHandler.postDelayed(stopMoving, (int) (time*waitTime)* 1000);
+                maHandler.postDelayed(stopMoving, (int) (time*waitTime)* 1000);  // Stop moving after total run
                 maHandler.post(altHigh);
-                maHandler.postDelayed(altLow, (int) time*waitTime*500);
+                maHandler.postDelayed(altLow, (int) time*waitTime*500);        // Start moving down after half the time
 
 
-                for(int i = 0; i < time; yawInput+=yawIncInt) {
+                for(int i = 0; i < time; yawInput+=yawIncInt) {  //Loop
 
 //                    maHandler.postDelayed(stopMoving, i*waitTime*1000 + waitTime*500);
 //                    maHandler.postDelayed(takePicture, i*waitTime*1000 + waitTime*500);
