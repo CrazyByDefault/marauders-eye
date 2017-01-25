@@ -249,8 +249,9 @@ public class RadiusActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 maHandler.postDelayed(stopMoving, (int) (time*waitTime)* 4000);  // Stop moving after total run
-                maHandler.post(altHigh);
-                maHandler.postDelayed(altLow, (int) time*waitTime*2000);        // Start moving down after half the time
+                maHandler.postDelayed(altHigh, (int) time*waitTime*2000 + waitTime*1000);
+
+
 
 
                 for(int i = 0; i < time; yawInput+=yawIncInt) {  // do stuff Loop
