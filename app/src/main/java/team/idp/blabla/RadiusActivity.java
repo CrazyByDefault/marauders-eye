@@ -250,13 +250,13 @@ public class RadiusActivity extends AppCompatActivity {
                 maHandler.postDelayed(altLow, (int) time*waitTime*500);        // Start moving down after half the time
 
 
-                for(int i = 0; i < time; yawInput+=yawIncInt) {  //Loop
+                for(int i = 0; i < time; yawInput+=yawIncInt) {  // do stuff Loop
 
-//                    maHandler.postDelayed(stopMoving, i*waitTime*1000 + waitTime*500);
-//                    maHandler.postDelayed(takePicture, i*waitTime*1000 + waitTime*500);
+                    maHandler.postDelayed(stopMoving, i*waitTime*4000 + waitTime*2000);
+                    maHandler.postDelayed(takePicture, i*waitTime*4000 + waitTime*2000);
                         
-                    maHandler.postDelayed(rollLeft, i*waitTime*1000);
-                    maHandler.postDelayed(yawRight, i*waitTime*1000);
+                    maHandler.postDelayed(rollLeft, i*waitTime*4000);
+                    maHandler.postDelayed(yawRight, i*waitTime*4000);
                     i++;
                 }
 
