@@ -222,6 +222,10 @@ public class MiniDrone {
         }
     }
 
+    public void flatTrim(){
+        mDeviceController.getFeatureMiniDrone().sendPilotingFlatTrim();
+    }
+
     /**
      * Set the forward/backward angle of the drone
      * Note that {@link MiniDrone#setFlag(byte)} should be set to 1 in order to take in account the pitch value

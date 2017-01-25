@@ -16,6 +16,7 @@ import com.parrot.arsdk.arcommands.ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTAT
 import com.parrot.arsdk.arcontroller.ARCONTROLLER_DEVICE_STATE_ENUM;
 import com.parrot.arsdk.ardiscovery.ARDiscoveryDeviceService;
 
+import static android.os.SystemClock.sleep;
 
 
 public class RadiusActivity extends AppCompatActivity {
@@ -227,6 +228,8 @@ public class RadiusActivity extends AppCompatActivity {
             public void onClick(View v) {
                 switch (mMiniDrone.getFlyingState()) {
                     case ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_LANDED:
+                        mMiniDrone.flatTrim();
+                        sleep(5000);
                         mMiniDrone.takeOff();
                         break;
                     case ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_FLYING:
