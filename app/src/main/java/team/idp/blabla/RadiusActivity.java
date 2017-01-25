@@ -189,7 +189,7 @@ public class RadiusActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int x, int y, Intent resultIn) {
+    protected void onActivityResult(int x, int y, Intent resultIn) { // Bundle receive from yolo activity
         Bundle resultArgs = resultIn.getExtras();
         time = resultArgs.getFloat("TIME");
         waitTime = (int) resultArgs.getFloat("WAIT");
@@ -268,7 +268,7 @@ public class RadiusActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 maHandler.post(stopMoving);
-                maHandler.postDelayed(takePicture, 750);
+                maHandler.postDelayed(takePicture, 750);     //Takes pic at 750 ms
 
             }
         });

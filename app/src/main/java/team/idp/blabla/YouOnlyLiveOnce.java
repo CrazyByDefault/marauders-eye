@@ -17,7 +17,7 @@ public class YouOnlyLiveOnce extends AppCompatActivity {
     SharedPreferences.Editor editor;
 
     private Button doneBt;
-    private EditText rollSpeedInput, timeInput, yawInput, waitInput, yawInc, gazInput;  //Variables
+    private EditText rollSpeedInput, timeInput, yawInput, waitInput, yawInc, gazInput;  // Variables
     private float time = 0, wait = 0, yawIncInt = 0;
     private int yaw = 0, roll = 0, gaz = 0;
 
@@ -27,7 +27,7 @@ public class YouOnlyLiveOnce extends AppCompatActivity {
         setContentView(R.layout.activity_you_only_live_once);
 
         settings = this.getPreferences(Context.MODE_PRIVATE);
-        editor = settings.edit();
+        editor = settings.edit();   // Storage
 
         timeInput = (EditText) findViewById(R.id.timeInput);
         yawInput = (EditText) findViewById(R.id.yawInput);
@@ -37,6 +37,7 @@ public class YouOnlyLiveOnce extends AppCompatActivity {
         yawInc = (EditText) findViewById(R.id.yawStep);
         doneBt = (Button) findViewById(R.id.yoloDoneBt);
 
+        // Display saved values on the settings page
         yawInput.setText(Integer.toString(settings.getInt("Saved_yaw", 0)));
         timeInput.setText(Float.toString(settings.getFloat("Saved_time", 0)));
         rollSpeedInput.setText(Float.toString(settings.getFloat("Saved_wait", 0)));
@@ -57,7 +58,7 @@ public class YouOnlyLiveOnce extends AppCompatActivity {
 
                 Bundle args = new Bundle();
 
-                args.putFloat("TIME", time);
+                args.putFloat("TIME", time);   // Bundle -- send
                 args.putFloat("WAIT", wait);
                 args.putInt("YAW", yaw);
                 args.putFloat("YAWINCR", yawIncInt);
@@ -75,12 +76,10 @@ public class YouOnlyLiveOnce extends AppCompatActivity {
 
     }
 
-   
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        //Store saved values
         editor.putFloat("Saved_time", time);
         editor.putFloat("Saved_wait", wait);
         editor.putFloat("Saved_yawInc", yawIncInt);
