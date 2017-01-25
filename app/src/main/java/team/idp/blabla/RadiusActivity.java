@@ -229,7 +229,7 @@ public class RadiusActivity extends AppCompatActivity {
                 switch (mMiniDrone.getFlyingState()) {
                     case ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_LANDED:
                         mMiniDrone.flatTrim();
-                        sleep(5000);
+                        sleep(500);
                         mMiniDrone.takeOff();
                         break;
                     case ARCOMMANDS_MINIDRONE_PILOTINGSTATE_FLYINGSTATECHANGED_STATE_FLYING:
